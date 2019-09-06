@@ -4,16 +4,15 @@ import {testdatabase} from "./firebase.js"
 import Form from 'react-bootstrap/Form'
 import { Col } from 'react-bootstrap';
 import firebase from 'firebase';
+import {OnePhone} from './phoneComponents.js'
+
 
 class App extends Component {
 
   app = firebase.initializeApp(testdatabase);
 
-
-  speedValue = this.app.database().ref().child('speed')
   phonesUpdated = this.app.database().ref().child('phones')
   usersUpdated = this.app.database().ref().child('users')
-  updatespeed = this.app.database().ref()
   updateIphone6 = this.app.database().ref().child('phones').child("0")
   updateIphone7 = this.app.database().ref().child('phones').child("1")
   updateIphone8 = this.app.database().ref().child('phones').child("2")
@@ -37,11 +36,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.speedValue.on('value', snap => {
-      this.setState({
-        speed: snap.val(),
-      })
-    })
 
     this.phonesUpdated.on('value', snap =>{
       this.setState({
@@ -311,82 +305,8 @@ class App extends Component {
   }
 }
 
-const OnePhone = (props) => {
-  return (
-    <div className="line">
-      <PhoneName phoneName={props.name}/>
-      <PhoneID phoneid={props.id}/>
-      <CheckedOutBy checkedOutBy={props.checkedOutBy}/>
-      <CheckOutTime checkedOutTime={props.checkedOutTime}/>
-    </div>
-  )
-}
-
-const PhoneName = (props) => {
-  return (
-      <p className="phoneName">{props.phoneName}</p>
-  )
-}
-
-const PhoneID = (props) => {
-  return (
-
-      <p className="phoneID">{props.phoneid}</p>
-
-  )
-}
-
-const CheckedOutBy = (props) => {
-  return (
-      <p className="checkedOutBy">{props.checkedOutBy} </p>
-  )
-}
-
-const CheckOutTime = (props) => {
-  return (
-      <p className="checkOutTime">{props.checkedOutTime}</p>
-  )
-}
 
 
 
-// const CheckOutBar= (props) => {
-
-//   handleSubmit(event){
-//     event.preventDefault();
-//   }; 
-
-//   return (
-
-//     <div className="checkOutBar">
-//     <p>Check Out:</p>
-//     <form onSubmit={this.handleSubmit()}>
-//     {/* <form> */}
-//       <Form.Row>
-//         <Form.Group as={Col} controlId="formGridCity">
-//         <Form.Label>Phone</Form.Label>
-//         <Form.Control as="select">
-//             <option>Choose...</option>
-//             {props.phones.map((phone, index) =>
-//               <option>{phone.name}</option>
-//         )}
-//         </Form.Control>
-//         </Form.Group>
-
-//         <Form.Group as={Col} controlId="formGridState">
-//           <Form.Label>User:</Form.Label>
-//           <Form.Control as="select">
-//             <option>Choose...</option>
-//             {props.users.map((user, index) =>
-//               <option>{user.name}</option>
-//         )}
-//           </Form.Control>
-//         </Form.Group>
-//       </Form.Row>
-//       <button type="submit" class="btn btn-primary">Check Out</button>
-//     </form>
-//   </div>
-//   )
-// }
 
 export default App;
