@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/momo/./static/css/main.a6e4ff8d.chunk.css",
+    "main.js": "/momo/./static/js/main.5b3d7f16.chunk.js",
+    "main.js.map": "/momo/./static/js/main.5b3d7f16.chunk.js.map",
+    "runtime~main.js": "/momo/./static/js/runtime~main.c4a60a4d.js",
+    "runtime~main.js.map": "/momo/./static/js/runtime~main.c4a60a4d.js.map",
+    "static/js/2.816a452c.chunk.js": "/momo/./static/js/2.816a452c.chunk.js",
+    "static/js/2.816a452c.chunk.js.map": "/momo/./static/js/2.816a452c.chunk.js.map",
+    "index.html": "/momo/./index.html",
+    "precache-manifest.4ea8cf2a3f04e30bbcf740662fab8e08.js": "/momo/./precache-manifest.4ea8cf2a3f04e30bbcf740662fab8e08.js",
+    "service-worker.js": "/momo/./service-worker.js",
+    "static/css/main.a6e4ff8d.chunk.css.map": "/momo/./static/css/main.a6e4ff8d.chunk.css.map"
+  }
+}
