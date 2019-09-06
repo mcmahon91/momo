@@ -2,32 +2,121 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.line {
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.phoneList {
+  background: gray;
+  width: 80%;
+  margin: 50px auto;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 5px solid black;
+}
+
+.line {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  border-bottom: 1px solid black;
 }
 
-.App-link {
-  color: #61dafb;
+.phoneName {
+  margin: 10px;
+  display: flex;
+  font-size: 1.2em;
+  /* flex-grow: 1; */
+  width: 20em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.phoneID {
+  margin: 10px;
+  display: flex;
+  font-size: 1.2em;
+  /* flex-grow: 1.5; */
+  width: 50em;
+}
+
+.checkedOutBy {
+  margin: 10px;
+  display: flex;
+  font-size: 1.2em;
+  /* flex-grow: 1; */
+  width: 20em;
+
+}
+
+.checkOutTime {
+  margin: 10px;
+  display: flex;
+  font-size: 1.2em;
+  /* flex-grow: 0.5; */
+  width: 10em;
+}
+
+.checkOutBar {
+  width: 80%;
+  margin: 70px auto;
+  border-radius: 6px;
+  /* border: 1px solid black; */
+}
+
+@media all and (max-width:1070px) {
+
+  .phoneList {
+    background: gray;
+    width: 90%;
+    margin: 50px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 5px solid black;
   }
 }
+
+@media all and (max-width:810px) {
+
+  .phoneList {
+    background: gray;
+    width: 100%;
+    margin: 50px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 5px solid black;
+  }
+}
+
+@media all and (max-width:725px) {
+
+  .phoneList {
+    background: gray;
+    width: 80%;
+    margin: 50px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 5px solid black;
+  }
+
+  .phoneID {
+    display: none
+  }
+
+}
+
+@media all and (max-width:445px) {
+
+  .phoneList {
+    background: gray;
+    width: 100%;
+    margin: 50px auto;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 5px solid black;
+  }
+
+  .phoneID {
+    display: none
+  }
+
+}
+
+
+/* if less than 1070 then make boarder smaller */
