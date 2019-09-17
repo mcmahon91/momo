@@ -7,7 +7,7 @@ import firebase from 'firebase';
 import {OnePhone} from '../phoneComponents.js'
 import {Link} from 'react-router-dom'
 import '../App.css';
-
+import SideBar from './SideBar'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
@@ -293,18 +293,7 @@ class DevicePage extends Component {
     render() {
       return (      
         <div>
-            <div className="sidebar">
-                <p className="divider">____</p>
-                <a href="/"><FontAwesomeIcon className="arrow" icon={ faArrowLeft }/></a>
-                <FontAwesomeIcon className="bars" icon={ faBars }/>
-                <a href="/devices"><FontAwesomeIcon className="mobile" icon={ faMobileAlt }/></a>
-                <a href="/users"><FontAwesomeIcon className="user" icon={ faUserFriends }/></a>
-                <a href="/apps"><FontAwesomeIcon className="apps" icon={faAppStore} size="2x"/></a>
-                <div className="bottomButtons">
-                    <a href=""><FontAwesomeIcon className="settings" icon={faCog}/></a>
-                    <a href=""><FontAwesomeIcon className="signOut" icon={faSignOutAlt}/></a>
-                </div>
-            </div>
+            <SideBar />
             <div className="devicePageDiv">
                 <h3 className="deviceHeader">Devices</h3>
             <div className="PhoneListAndOptions">
