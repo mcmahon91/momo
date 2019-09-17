@@ -4,6 +4,8 @@ import '../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faAppStore, faAppStoreIos } from '@fortawesome/fontawesome-free-brands'
+import Toggle from './toggle'
+
 
 const AppsPage = () => {
     return (
@@ -27,6 +29,7 @@ const AppsPage = () => {
             <Link to="/devices">Devices</Link>
             <Link to="/">home</Link>
             </div>
+            <Toggle />
         </div>
     )
 }

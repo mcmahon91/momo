@@ -1,0 +1,55 @@
+.side-drawer {
+    height: 100vh;
+    background: rgb(220, 247, 254)
+    ;
+    box-shadow: 2px opx 5px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 40px;
+    width: 200px;
+    z-index: 200;
+}
+
+a {
+    color: black;
+}
+
+.side-drawer a:hover {
+    color: black;
+}
+
+.side-drawer a {
+    display: flex;
+    flex-direction: column;
+}
+
+.bottomButtons {
+    position: absolute;
+    bottom: 0;
+}
+
+.side-drawer a {
+    padding-left: 10px;
+    height: 30px;
+}
+
+.mainMenuText {
+    margin-top: 6px;
+}
+
+.devicesText {
+    margin-top: 6px;
+}
+
+.usersText {
+    margin-top: 6px;
+}
+
+.appText {
+    margin-top: 9px;
+}
+
+.mobileMonitoring {
+    padding-top: 10px;
+    padding-left: 10px;
+}

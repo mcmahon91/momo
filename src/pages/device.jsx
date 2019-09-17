@@ -306,11 +306,8 @@ class DevicePage extends Component {
                 </div>
             </div>
             <div className="devicePageDiv">
-                <Link to="/users">Users</Link>
-                <Link to="/apps">Apps</Link>
-                <Link to="/">home</Link>
-            <div>
-                <h3>Devices</h3>
+                <h3 className="deviceHeader">Devices</h3>
+            <div className="PhoneListAndOptions">
                 <div className="phoneList">
                     <OnePhone 
                         id={"Device ID"}
@@ -320,7 +317,7 @@ class DevicePage extends Component {
                         model={"Model"}
                         os={"OS Version"}
                         key={"Phone Key"}
-                        index={"Index"}
+                        index={"Index"} 
                     />
                     {this.state.phones.map((phone, index) =>
                         <OnePhone
