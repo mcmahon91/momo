@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/momo/static/css/main.c8679bbf.chunk.css",
-    "main.js": "/momo/static/js/main.8e89d3e4.chunk.js",
-    "main.js.map": "/momo/static/js/main.8e89d3e4.chunk.js.map",
+    "main.js": "/momo/static/js/main.f7afcab5.chunk.js",
+    "main.js.map": "/momo/static/js/main.f7afcab5.chunk.js.map",
     "runtime~main.js": "/momo/static/js/runtime~main.462b2dd5.js",
     "runtime~main.js.map": "/momo/static/js/runtime~main.462b2dd5.js.map",
-    "static/js/2.6dca5b11.chunk.js": "/momo/static/js/2.6dca5b11.chunk.js",
-    "static/js/2.6dca5b11.chunk.js.map": "/momo/static/js/2.6dca5b11.chunk.js.map",
+    "static/js/2.a54df57f.chunk.js": "/momo/static/js/2.a54df57f.chunk.js",
+    "static/js/2.a54df57f.chunk.js.map": "/momo/static/js/2.a54df57f.chunk.js.map",
     "index.html": "/momo/index.html",
-    "precache-manifest.2281459c9ff566ac6fa5e08f7c64d1f0.js": "/momo/precache-manifest.2281459c9ff566ac6fa5e08f7c64d1f0.js",
+    "precache-manifest.e0d224f050a3392c154d335173761ff4.js": "/momo/precache-manifest.e0d224f050a3392c154d335173761ff4.js",
     "service-worker.js": "/momo/service-worker.js",
     "static/css/main.c8679bbf.chunk.css.map": "/momo/static/css/main.c8679bbf.chunk.css.map"
   }
