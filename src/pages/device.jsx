@@ -5,13 +5,8 @@ import Form from 'react-bootstrap/Form'
 import { Col } from 'react-bootstrap';
 import firebase from 'firebase';
 import {OnePhone} from '../phoneComponents.js'
-import {Link} from 'react-router-dom'
-import '../App.css';
 import SideBar from './SideBar'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faAppStore, faAppStoreIos } from '@fortawesome/fontawesome-free-brands'
 
 
 
@@ -220,11 +215,13 @@ class DevicePage extends Component {
         })
       } else if (this.phonePickedClear.current.value === "Apple iPhone X") {
         this.updateIphoneX.update({
-            "checkOutTime" : "",
-            "checkedOutBy" : "Available",
-            "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-            "key" : "4",
-            "name" : "iPhone X"
+          "checkOutTime" : "",
+          "checkedOutBy" : "Available",
+          "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
+          "key" : "4",
+          "make" : "Apple",
+          "model" : "iPhone X",
+          "os" : ""
         })
       } else if (this.phonePickedClear.current.value === "Apple iPhone XS") {
         this.updateIphoneXS.update({
@@ -236,7 +233,7 @@ class DevicePage extends Component {
             "model" : "iPhone XS",
             "os" : ""
         })
-      } else if (this.phonePickedClear.current.value === "samsung 1") {
+      } else if (this.phonePickedClear.current.value === "Samsung 1") {
         this.updateSamsung1.update({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -246,7 +243,7 @@ class DevicePage extends Component {
             "model" : "1",
             "os" : ""
         })
-      } else if (this.phonePickedClear.current.value === "samsung 2") {
+      } else if (this.phonePickedClear.current.value === "Samsung 2") {
         this.updateSamsung2.update({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -256,7 +253,7 @@ class DevicePage extends Component {
             "model" : "2",
             "os" : ""
         })
-      } else if (this.phonePickedClear.current.value === "samsung 3") {
+      } else if (this.phonePickedClear.current.value === "Samsung 3") {
         this.updateSamsung3.update({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -266,7 +263,7 @@ class DevicePage extends Component {
             "model" : "3",
             "os" : ""
         })
-      } else if (this.phonePickedClear.current.value === "samsung 4") {
+      } else if (this.phonePickedClear.current.value === "Samsung 4") {
         this.updateSamsung4.update({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -276,7 +273,7 @@ class DevicePage extends Component {
             "model" : "4",
             "os" : ""
         })
-      } else if (this.phonePickedClear.current.value === "samsung 5") {
+      } else if (this.phonePickedClear.current.value === "Samsung 5") {
         this.updateSamsung5.update({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -291,14 +288,15 @@ class DevicePage extends Component {
     }
   
     render() {
-      return (      
+      return (
         <div>
             <SideBar />
             <div className="devicePageDiv">
-                <h3 className="deviceHeader">Devices</h3>
+              <h3 className="deviceHeader">Devices</h3>
             <div className="PhoneListAndOptions">
                 <div className="phoneList">
-                    <OnePhone 
+                  <div style={{backgroundColor: "rgb(125,166,177)"}}>
+                    <OnePhone
                         id={"Device ID"}
                         checkedOutBy={"User"}
                         checkedOutTime={"Checkout Date"} 
@@ -308,6 +306,7 @@ class DevicePage extends Component {
                         key={"Phone Key"}
                         index={"Index"} 
                     />
+                  </div>
                     {this.state.phones.map((phone, index) =>
                         <OnePhone
                             id={phone.id}
@@ -341,7 +340,7 @@ class DevicePage extends Component {
                             <Form.Control as="select" ref={this.person}>
                                 <option>Choose...</option>
                                 {this.state.users.map((user, index) =>
-                                <option>{user.name}</option>
+                                <option>{user.firstName}</option>
                                 )}
                             </Form.Control>
                             </Form.Group>

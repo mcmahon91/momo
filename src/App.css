@@ -11,6 +11,26 @@
 
 }
 
+.userLine {
+  display: flex;
+}
+
+.userData {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  /* flex-grow: 1; */
+  width: 10em;
+}
+
+.userList {
+  background: white;
+  width: 50%;
+  margin: 50px auto;
+  overflow: hidden;
+  border: 1px solid black
+}
+
 .phoneMake {
   margin: 10px;
   display: flex;

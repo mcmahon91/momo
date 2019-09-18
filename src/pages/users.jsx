@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
 import '../App.css';
 import {testdatabase} from "../firebase.js"
 import firebase from 'firebase';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faAppStore, faAppStoreIos } from '@fortawesome/fontawesome-free-brands'
 import SideBar from './SideBar'
+import OnePhone from '../userComponents'
 
 class UserPage extends Component {
 
@@ -30,6 +26,8 @@ class UserPage extends Component {
                 users: snap.val()
             })
         })
+
+        console.log(this.state.users)
     }
 
 
@@ -40,6 +38,23 @@ class UserPage extends Component {
                 <SideBar />
                 <div className="userPageDiv">
                     <h3>Users</h3>
+                    <div className="userList">
+                        <div style={{backgroundColor: "rgb(125,166,177)"}}>
+                            <OnePhone 
+                                userid={"User ID"}
+                                firstName={"First Name"}
+                                lastName={"Last Name"}
+                            />
+                        </div>
+                        {this.state.users.map((user, index) =>
+                            <OnePhone 
+                                userid={user.userID}
+                                firstName={user.firstName}
+                                lastName={user.lastName}
+                            />
+                        )}
+                    </div>
+
 
                 </div>
             </div>

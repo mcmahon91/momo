@@ -1,12 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faAppStore, faAppStoreIos } from '@fortawesome/fontawesome-free-brands'
 import '../App.css';
-import DrawerToggleButton from '../SideDraw/DrawerToggleButton'
-import SideDraw from '../SideDraw/SideDraw'
-import Backdrop from '../SideDraw/Backdrop'
+
 import SideBar from './SideBar'
 
 class MainPage extends React.Component {
