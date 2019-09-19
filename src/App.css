@@ -15,18 +15,39 @@
   display: flex;
 }
 
+.appLine {
+  display: flex;
+}
+
+.appList {
+  background: white;
+  width: 95%;
+  margin: 10px auto 50px;
+  overflow: hidden;
+  border: 1px solid black
+}
+
+.newApp{
+  background: white;
+  width: 95%;
+  margin: 10px auto 50px;
+  overflow: hidden;
+  border: 1px solid black
+}
+
+
+
 .userData {
   margin: 7px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1; */
   width: 10em;
 }
 
 .userList {
   background: white;
-  width: 50%;
-  margin: 50px auto;
+  width: 40%;
+  margin: 50px 30px;
   overflow: hidden;
   border: 1px solid black
 }
@@ -35,7 +56,6 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1; */
   width: 10em;
 }
 
@@ -43,12 +63,11 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1; */
   width: 10em;
 }
 
-.deviceHeader {
-  margin-left: 40px;
+.header {
+  margin-left: 25px;
   padding-top: 10px;
 }
 
@@ -56,7 +75,6 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1; */
   width: 10em;
 }
 
@@ -64,7 +82,6 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1.5; */
   width: 40em;
 }
 
@@ -72,16 +89,13 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 1; */
   width: 10em;
-
 }
 
 .checkOutTime {
   margin: 10px;
   display: flex;
   font-size: 1em;
-  /* flex-grow: 0.5; */
   width: 10em;
 }
 
@@ -89,7 +103,34 @@
   width: 80%;
   margin: 70px auto;
   border-radius: 6px;
-  /* border: 1px solid black; */
+}
+
+.appImage {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  width: 5em;
+}
+
+.appName {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  width: 10em;
+}
+
+.appDescription {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  width: 55em;
+}
+
+.appVersion {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  width: 5em;
 }
 
 .userButton {
@@ -137,7 +178,8 @@
 .devicePageDiv {
   /* text-align: center; */
   margin-left: 40px;
-  background-color: rgb(236, 236, 236)
+  background-color: rgb(236, 236, 236);
+  height: 1050px;
 }
 
 .PhoneListAndOptions {

@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'
 
-const OnePhone = (props) => {
+const OneUser = (props) => {
     return (
         <div className="userLine">
             <UserID userid={props.userid}/>
@@ -31,4 +31,4 @@ const LastName = (props) => {
 }
 
 
-export default OnePhone;
+export default OneUser;

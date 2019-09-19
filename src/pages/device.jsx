@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {testdatabase} from "../firebase.js"
+import {testdatabase} from "../databases/testdatabase.js"
 import Form from 'react-bootstrap/Form'
 import { Col } from 'react-bootstrap';
 import firebase from 'firebase';
@@ -27,15 +27,9 @@ class DevicePage extends Component {
     updateSamsung4 = this.app.database().ref().child('phones').child("8")
     updateSamsung5 = this.app.database().ref().child('phones').child("9")
     
-  
     state = {
-  
-      "phones" : [
-        ],
-  
-      users: [
-      ],
-  
+      "phones" : [],
+      "users" : [],
     }
   
     componentDidMount() {
@@ -288,12 +282,16 @@ class DevicePage extends Component {
     }
   
     render() {
+      setInterval(function() {
+        console.log()
+        console.log(this.state)
+      }, 2000);
       return (
         <div>
             <SideBar />
             <div className="devicePageDiv">
-              <h3 className="deviceHeader">Devices</h3>
-            <div className="PhoneListAndOptions">
+              <h3 className="header">Devices</h3>
+              <div className="PhoneListAndOptions">
                 <div className="phoneList">
                   <div style={{backgroundColor: "rgb(125,166,177)"}}>
                     <OnePhone
