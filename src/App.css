@@ -8,7 +8,6 @@
 
 .line {
   display: flex;
-
 }
 
 .userLine {
@@ -34,8 +33,6 @@
   overflow: hidden;
   border: 1px solid black
 }
-
-
 
 .userData {
   margin: 7px;
@@ -276,10 +273,58 @@
   padding-left: 5px;
 }
 
+.imageBox {
+  width: 6%;
+  margin: 0px 0.5em 0px 0.5em;
+}
 
+.appNameBox {
+  width: 13%;
+  margin: 0em 0.5em 0em 0em
+}
+
+.descriptionBox {
+  width: 67%;
+  margin: 0.5em 0.5em 0.5em 0em
+}
+
+.versionBox {
+  width: 5em;
+}
+
+.appButtonSubmit{
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  background-color: rgb(90, 171, 73);
+  color: white;
+  margin: 5px
+}
+.form-inline {
+  background-color: rgb(220, 247, 254)
+}
+.userIdBox {
+  margin: 5px 11% 5px 5px;
+  width: 20%;
+}
+
+.firstNameBox {
+  margin: 5px 5% 5px 5px;
+  width: 25%;
+}
+
+.lastNameBox {
+  margin: 5px 1% 5px 5px;
+  width: 25%;
+}
+
+.newUser {
+  border: none;
+  padding: auto;
+  align-self: center;
+}
 
 @media all and (max-width:1070px) {
-
   .phoneList {
     background: white;
     width: 99%;
@@ -289,7 +334,6 @@
 }
 
 @media all and (max-width:810px) {
-
   .phoneList {
     background: white;
     width: 99%;
@@ -299,7 +343,6 @@
 }
 
 @media all and (max-width:725px) {
-
   .phoneList {
     background: white;
     width: 99%;
@@ -310,11 +353,9 @@
   .phoneID {
     display: none
   }
-
 }
 
 @media all and (max-width:445px) {
-
   .phoneList {
     background: white;
     width: 99%;
@@ -325,8 +366,4 @@
   .phoneID {
     display: none
   }
-
 }
-
-
-/* if less than 1070 then make boarder smaller */

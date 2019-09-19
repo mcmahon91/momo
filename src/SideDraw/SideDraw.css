@@ -1,7 +1,6 @@
 .side-drawer {
     height: 100vh;
-    background: rgb(220, 247, 254)
-    ;
+    background: rgb(220, 247, 254);
     box-shadow: 2px opx 5px rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;

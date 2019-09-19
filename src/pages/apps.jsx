@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import '../App.css';
 import SideBar from './SideBar'
 import OneApp from "../AppComponents";
-import {appdatabase} from "../databases/appdatabase.js"
 import {testdatabase} from "../databases/testdatabase.js"
 import firebase from 'firebase';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+
 
 class AppsPage extends Component {
 
-    appDatabase = firebase.initializeApp(appdatabase);
-    apps = this.appDatabase.database().ref()
+    appDatabase = firebase.initializeApp(testdatabase);
+    apps = this.appDatabase.database().ref().child('apps')
 
     state = {
         "apps":[]
@@ -47,7 +49,7 @@ class AppsPage extends Component {
             <div className="appPageDiv">
                 <h2 className="header">App Management</h2>
                 <h3 className="header">Add New App</h3>
-                <div className="newApp">
+                <div className="newApp" style={{backgroundColor: "rgb(236,236,236)"}}>
                     <div style={{backgroundColor: "rgb(125,166,177)"}}>
                         <OneApp 
                             image={"Image"}
@@ -59,34 +61,35 @@ class AppsPage extends Component {
                     <form className="form-inline" onSubmit={this.onSubmit}>
                         <input
                         type="text"
-                        className="form-control mb-2 mr-sm-2 mb-sm-0"
-                        placeholder="Image"
+                        className="imageBox"
+                        placeholder=""
                         ref={input => this.image = input}/>
                         <input
                         type="text"
-                        className="form-control mb-2 mr-sm-2 mb-sm-0"
+                        className="appNameBox"
                         placeholder="App Name"
                         ref={input => this.appName = input}/>
                         <input
                         type="text"
-                        className="form-control mb-2 mr-sm-2 mb-sm-0"
+                        className="descriptionBox"
                         placeholder="Description - 300 word limit"
                         ref={input => this.description = input}/>
                         <input
                         type="text"
-                        className="form-control mb-2 mr-sm-2 mb-sm-0"
+                        className="versionBox"
                         placeholder="Version"
                         ref={input => this.version = input}/>
                         <button 
-                            type="submit" 
-                            className="btn btn-primary">Submit
+                        type="submit" 
+                        className="appButtonSubmit">
+                            <FontAwesomeIcon icon={faCheck} />
                         </button>
                     </form>
 
 
                 </div>
                 <h3 className="header">Available Apps</h3>
-                    <div className="appList">
+                    <div className="appList" style={{backgroundColor: "rgb(236,236,236)"}}>
                         <div style={{backgroundColor: "rgb(125,166,177)"}}>
                             <OneApp 
                                 image={"Image"}
