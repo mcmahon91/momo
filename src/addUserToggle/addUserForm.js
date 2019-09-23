@@ -15,7 +15,7 @@ class AddUserForm extends Component {
         const firstName = this.firstName.value;
         const lastName = this.lastName.value;
         const userID = this.userID.value;
-        const key = this.props.prevKey + 1;
+        const key = this.props.prevUserKey + 1;
         console.log(firstName)
         console.log(lastName)
         console.log(userID)
@@ -34,24 +34,24 @@ class AddUserForm extends Component {
     render() {
         return(
         <div>
-            <form className="form-inline" onSubmit={this.onSubmit}>
+            <form className="form-inline-edit" onSubmit={this.onSubmit}>
             <input
             type="text"
-            className="userIdBox"
+            className="editUserId"
             placeholder="User ID"
             ref={input => this.userID = input}
             required
             />
             <input
             type="text"
-            className="firstNameBox"
+            className="editUserFirstName"
             placeholder="First Name"
             ref={input => this.firstName = input}
             required
             />
             <input
             type="text"
-            className="lastNameBox"
+            className="editUserLastName"
             placeholder="Last Name"
             ref={input => this.lastName = input}
             required

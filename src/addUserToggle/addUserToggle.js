@@ -19,7 +19,7 @@ class AddUser extends Component {
     render(){
         let addUserForm;
         if(this.state.addNewUserOpen) {
-            addUserForm = <AddUserForm removeNewUserinput={this.addUserClickHandler} updateState={this.props.updateState}  state={this.props.state} prevKey={this.props.prevKey}/>
+            addUserForm = <AddUserForm removeNewUserinput={this.addUserClickHandler} updateState={this.props.updateState}  state={this.props.state} prevUserKey={this.props.prevUserKey}/>
         }
 
         return(

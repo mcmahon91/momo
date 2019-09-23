@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faTimes, faCheck} from '@fortawesome/free-solid-svg-icons'
+import { faTimesCircle, faEdit, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 class OneUser extends Component {
 
     state ={
+        users: this.props.userState,
         editData: false
     }
 
@@ -23,14 +24,6 @@ class OneUser extends Component {
         
         this.props.updateUserInDatabase(updatedUserinfo, Key)
         this.editClickHandler()
-
-        // if (phone.name === checkPhonePicked){
-        //     console.log(phone.name)
-        //     accessPhonesDatabase.child(phone.key).set({
-
-        //     })
-        //   }
-
     }
 
     render(){
@@ -39,19 +32,19 @@ class OneUser extends Component {
 
         if(!this.state.editData){
             dataShown = <div className="userLine">
-            <UserID userid={this.props.userid}/>
-            <FirstName firstName={this.props.firstName} />
-            <LastName lastName={this.props.lastName} />
-            <button className="editButton" onClick={this.editClickHandler}></button>
-            <button className="deleteButton" onClick={() => this.props.deleteUser(this.props.Key)}>X </button>
-        </div>
+                            <UserID userid={this.props.userid}/>
+                            <FirstName firstName={this.props.firstName} />
+                            <LastName lastName={this.props.lastName} />
+                            <button className="editButton" onClick={this.editClickHandler}><FontAwesomeIcon icon={faEdit} /></button>
+                            <button className="deleteButton" onClick={() => this.props.deleteUser(this.props.Key)}>X </button>
+                        </div>
         } else {
 
             dataShown = <div>
-            <form className="form-inline" onSubmit={ (a) => this.updateUser(a, this.props.Key)}>
+            <form className="form-inline-edit" onSubmit={ (a) => this.updateUser(a, this.props.Key)}>
             <input
             type="text"
-            className="userIdBox"
+            className="editUserId"
             defaultValue={this.props.userid}
             placeholder="User ID"
             ref={input => this.userID = input}
@@ -59,14 +52,14 @@ class OneUser extends Component {
             />
             <input
             type="text"
-            className="firstNameBox"
+            className="editUserFirstName"
             defaultValue={this.props.firstName}
             ref={input => this.firstName = input}
             required
             />
             <input
             type="text"
-            className="lastNameBox"
+            className="editUserLastName"
             defaultValue={this.props.lastName}
             ref={input => this.lastName = input}
             required
@@ -76,8 +69,8 @@ class OneUser extends Component {
             className="appButtonSubmit">
                 <FontAwesomeIcon icon={faCheck} />
             </button>
+            <button className="deleteButton" onClick={this.editClickHandler}>X</button>
             </form>
-            <button className="editButton" onClick={this.editClickHandler}>cancel</button>
         </div>
         }
 

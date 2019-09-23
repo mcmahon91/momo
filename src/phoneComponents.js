@@ -1,31 +1,67 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
-export const OnePhone = (props) => {
-    return (
-        <div className="line">
-            <PhoneID phoneid={props.id}/>
-            <CheckedOutBy checkedOutBy={props.checkedOutBy}/>
-            <CheckOutTime checkedOutTime={props.checkedOutTime}/>
-            <PhoneMake phoneMake={props.make}/>
-            <PhoneModel phoneModel={props.model} />
-            <OsVersion osVersion={props.os} />
-        </div>
-    )
+class OnePhone extends Component {
+
+    state={
+        devices: this.props.deviceState,
+        editData: false
+    }
+
+    editClickHandler = () => {
+        this.setState((prevState) => {
+            return{editData: !prevState.editData}
+        })
+    }
+
+
+    render(){
+
+        let dataShown;
+
+        if(!this.state.editData){
+            dataShown = <div className="line">
+                        <PhoneID phoneid={this.props.id}/>
+                        <CheckedOutBy checkedOutBy={this.props.checkedOutBy}/>
+                        <CheckOutTime checkedOutTime={this.props.checkedOutTime}/>
+                        <PhoneMake phoneMake={this.props.make}/>
+                        <PhoneModel phoneModel={this.props.model} />
+                        <OsVersion osVersion={this.props.os} />
+                        <button className="editButton" ><FontAwesomeIcon icon={faEdit} /></button>
+                        <button className="deleteButton" onClick={() => this.props.deleteDevice(this.props.index)}>X </button>
+                        </div>
+        } else {
+            dataShown = <div>
+            <button>Hi</button>
+            </div>
+        }
+
+
+
+
+
+        return (
+            <div>
+                {dataShown}
+            </div>
+        )
+    }
 }
 
-export const PhoneMake = (props) => {
+const PhoneMake = (props) => {
     return (
         <p className="phoneMake">{props.phoneMake}</p>
     )
 }
 
-export const PhoneModel = (props) => {
+const PhoneModel = (props) => {
     return (
         <p className="phoneModel">{props.phoneModel}</p>
     )
 }
 
-export const PhoneID = (props) => {
+const PhoneID = (props) => {
     return (
 
         <p className="phoneID">{props.phoneid}</p>
@@ -33,25 +69,25 @@ export const PhoneID = (props) => {
     )
 }
 
-export const CheckedOutBy = (props) => {
+const CheckedOutBy = (props) => {
     return (
         <p className="checkedOutBy">{props.checkedOutBy} </p>
     )
 }
 
-export const CheckOutTime = (props) => {
+const CheckOutTime = (props) => {
     return (
         <p className="checkOutTime">{props.checkedOutTime}</p>
     )
 }
 
-export const OsVersion = (props) => {
+const OsVersion = (props) => {
     return (
         <p className="osVersion">{props.osVersion}</p>
     )
 }
 
-
+export default OnePhone
 // export function OnePhone() {}
 // export function PhoneName() {};
 // export function PhoneID() {};

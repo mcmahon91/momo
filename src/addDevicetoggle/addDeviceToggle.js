@@ -19,7 +19,7 @@ class AddDevice extends Component {
         let addDeviceForm;
 
         if(this.state.addNewDeviceOpen) {
-            addDeviceForm = <AddDeviceForm removeNewDeviceInput={this.addDeviceClickHandler} updateState={this.props.updateState} state={this.props.state}/>
+            addDeviceForm = <AddDeviceForm removeNewDeviceInput={this.addDeviceClickHandler} updateState={this.props.updateState} state={this.props.state} prevDeviceKey={this.props.prevDeviceKey}/>
         }
         return (
             <div>

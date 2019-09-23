@@ -10,13 +10,14 @@ class AddDeviceForm extends Component {
 
     onSubmit = (a) => {
         a.preventDefault();
+        console.log("Key " + this.props.prevDeviceKey)
         const deviceId = this.deviceID.value;
         const user = "Available";
         const checkoutDate = "";
         const make = this.make.value;
         const model = this.model.value;
         const osVersion = this.osVersion.value;
-        const key = this.state.length;
+        const key = this.props.prevDeviceKey + 1;
         console.log(this.state)
         const info = {key: key.toString(), id: deviceId, checkedOutBy: user, checkOutTime:checkoutDate, make: make, model: model, os: osVersion, name: `${make} ${model}`}
 

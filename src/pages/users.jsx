@@ -13,12 +13,13 @@ class UserPage extends Component {
 
     userDatabase = firebase.initializeApp(testdatabase);
     users = this.userDatabase.database().ref().child('users')
-    prevKeyValue = this.userDatabase.database().ref().child('prevKey');
+    prevUserKeyValue = this.userDatabase.database().ref().child('prevUserKey');
     state = {
         "users": [],
-        "prevKey": 0
+        "prevUserKey": 0
     };
 
+    
 
     componentDidMount() {
         this.users.on('value', snap =>{
@@ -27,9 +28,9 @@ class UserPage extends Component {
             })
         })
 
-        this.prevKeyValue.on('value', snap =>{
+        this.prevUserKeyValue.on('value', snap =>{
             this.setState({
-                prevKey: snap.val()
+                prevUserKey: snap.val()
             })
         })
 
@@ -40,30 +41,28 @@ class UserPage extends Component {
             newState
         )
 
-        this.state.prevKey = parseInt(this.state.prevKey) + 1
-        this.prevKeyValue.set(
-            this.state.prevKey
+        this.state.prevUserKey = parseInt(this.state.prevUserKey) + 1
+        this.prevUserKeyValue.set(
+            this.state.prevUserKey
         )
     }
 
-    deleteUser = (id) => {
-
-        console.log(this.state)
-        console.log(id)
-        this.setState((prevState) => ({
-            users: prevState.users.filter(user => user.Key !== id)
-        }))
+    deleteUser = (key) => {
+        let listOfUsers = this.state.users
+        this.users.set(
+            listOfUsers.filter(user => user.Key !== key)
+        )
     }
+
 
 
 
     updateUserInDatabase = (updatedUserinfo, Key) => {
         let users = this.state.users
-        let accessUserDatabase = this.users
-        let checkUsers = users.map(updateUser)
-        function updateUser(user){
-            if(user.Key == Key){
-                accessUserDatabase.child(user.Key).set({
+        let i = 0 
+        for(i = 0; i< users.length; i++){
+            if(users[i].Key == Key){
+                this.users.child(i).set({
                     "Key": updatedUserinfo.Key,
                     "firstName" : updatedUserinfo.firstName,
                     "lastName" : updatedUserinfo.lastName,
@@ -96,10 +95,11 @@ class UserPage extends Component {
                                 lastName={user.lastName}
                                 Key={user.Key}
                                 deleteUser={this.deleteUser}
+                                userState={this.users}
                                 updateUserInDatabase={this.updateUserInDatabase}
                             />,
                         )}
-                        <AddUser updateState={this.updateState} state={this.state} prevKey={this.state.prevKey}/>
+                        <AddUser updateState={this.updateState} state={this.state} prevUserKey={this.state.prevUserKey}/>
                     </div>
                 </div> 
             </div>

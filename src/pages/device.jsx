@@ -4,7 +4,8 @@ import {testdatabase} from "../databases/testdatabase.js"
 import Form from 'react-bootstrap/Form'
 import { Col } from 'react-bootstrap';
 import firebase from 'firebase';
-import {OnePhone} from '../phoneComponents.js'
+import OnePhone from '../phoneComponents.js'
+import OnePhoneTitle from '../phoneTitle'
 import SideBar from './SideBar'
 import AddDevice from '../addDevicetoggle/addDeviceToggle'
 
@@ -17,11 +18,13 @@ class DevicePage extends Component {
 
   phonesUpdated = this.app.database().ref().child('phones')
   usersUpdated = this.app.database().ref().child('users')
+  prevDeviceKeyValue = this.app.database().ref().child('prevDeviceKey')
 
     
   state = {
     "phones" : [],
     "users" : [],
+    "prevDeviceKey" : 0
   }
   
   componentDidMount() {
@@ -37,6 +40,12 @@ class DevicePage extends Component {
         users: snap.val()
       })
     })
+
+    this.prevDeviceKeyValue.on('value', snap =>{
+      this.setState({
+        prevDeviceKey: snap.val()
+      })
+    })
   }
   
   phonePicked = React.createRef()
@@ -47,6 +56,11 @@ class DevicePage extends Component {
   updateState = (newState) => {
     this.phonesUpdated.set(
         newState
+    )
+
+    this.state.prevDeviceKey = parseInt(this.state.prevDeviceKey) + 1
+    this.prevDeviceKeyValue.set(
+      this.state.prevDeviceKey
     )
 }
   
@@ -108,6 +122,15 @@ class DevicePage extends Component {
       }
     }
   }
+
+  deleteDevice = (key) => {
+    console.log(key)
+    console.log(this.state.phones)
+    let listOfDevices = this.state.phones
+    this.phonesUpdated.set(
+      listOfDevices.filter(device => device.key !== key)
+    )
+  }
   
   render() {
     return (
@@ -118,7 +141,7 @@ class DevicePage extends Component {
             <div className="PhoneListAndOptions">
               <div className="phoneList">
                 <div style={{backgroundColor: "rgb(125,166,177)"}}>
-                  <OnePhone
+                  <OnePhoneTitle
                     id={"Device ID"}
                     checkedOutBy={"User"}
                     checkedOutTime={"Checkout Date"} 
@@ -126,10 +149,12 @@ class DevicePage extends Component {
                     model={"Model"}
                     os={"OS Version"}
                     key={"Phone Key"}
-                    index={"Index"} 
+                    index={"Index"}
+                    deleteDevice={this.deleteDevice}
                   />
                 </div>
                   {this.state.phones.map((phone, index) =>
+                    
                     <OnePhone
                       id={phone.id}
                       checkedOutBy={phone.checkedOutBy}
@@ -137,11 +162,13 @@ class DevicePage extends Component {
                       make={phone.make}
                       model={phone.model}
                       os={phone.os}
+                      index={phone.key}
+                      deleteDevice={this.deleteDevice}
                       key={phone.key}
-                      index={index}
                     />
+
                   )}
-                  <AddDevice updateState={this.updateState} state={this.state.phones}/>
+                  <AddDevice updateState={this.updateState} state={this.state.phones} prevDeviceKey={this.state.prevDeviceKey}/>
                 </div>
 
 
