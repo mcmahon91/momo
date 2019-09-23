@@ -6,23 +6,8 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 class AddUserForm extends Component {
-
-    // userDatabase = firebase.initializeApp(testdatabase);
-    // users = this.userDatabase.database().ref().child('users')
-
-
     
     state = this.props.state
-
-            // componentDidMount() {
-            //     // this.users.on('value', snap =>{
-            //     //     this.setState({
-            //     //         users: snap.val()
-            //     //     })
-            //     // })
-            // }
-
-    // updateTopState = ()
 
     onSubmit = (a) => {
         a.preventDefault();
@@ -30,7 +15,7 @@ class AddUserForm extends Component {
         const firstName = this.firstName.value;
         const lastName = this.lastName.value;
         const userID = this.userID.value;
-        const key = this.state.users.length;
+        const key = this.props.prevKey + 1;
         console.log(firstName)
         console.log(lastName)
         console.log(userID)
@@ -55,18 +40,21 @@ class AddUserForm extends Component {
             className="userIdBox"
             placeholder="User ID"
             ref={input => this.userID = input}
+            required
             />
             <input
             type="text"
             className="firstNameBox"
             placeholder="First Name"
             ref={input => this.firstName = input}
+            required
             />
             <input
             type="text"
             className="lastNameBox"
             placeholder="Last Name"
             ref={input => this.lastName = input}
+            required
             />
             <button 
             type="submit" 

@@ -39,14 +39,23 @@
   display: flex;
   font-size: 1em;
   width: 10em;
+  border: 1px solid black
+}
+
+.userIdData {
+  margin: 7px;
+  display: flex;
+  font-size: 1em;
+  width: 5em;
+  border: 1px solid black
 }
 
 .userList {
-  background: white;
+  background: rgb(236, 236, 236);
   width: 40%;
+  height: 680px;
   margin: 50px 30px;
   overflow: hidden;
-  border: 1px solid black
 }
 
 .phoneMake {
@@ -72,28 +81,28 @@
   margin: 10px;
   display: flex;
   font-size: 1em;
-  width: 10em;
+  width: 7em;
 }
 
 .phoneID {
   margin: 10px;
   display: flex;
   font-size: 1em;
-  width: 40em;
+  width: 22em;
 }
 
 .checkedOutBy {
   margin: 10px;
   display: flex;
   font-size: 1em;
-  width: 10em;
+  width: 10%;
 }
 
 .checkOutTime {
   margin: 10px;
   display: flex;
   font-size: 1em;
-  width: 10em;
+  width: 13em;
 }
 
 .checkOutBar {
@@ -300,6 +309,30 @@
   color: white;
   margin: 5px
 }
+
+.deleteButton:hover{
+  border-radius: 50%;
+  width: 1.9em;
+  height: 1.9em;
+  background-color: red;
+  color: white;
+  margin-top: 4px;
+}
+.deleteButton{
+  background-color: inherit;
+  color: rgb(236, 236, 236);
+  border: none;
+}
+
+.editButton {
+  border-radius: 50%;
+  width: 1.9em;
+  height: 1.9em;
+  background-color: black;
+  color: white;
+  margin-top: 4px;
+}
+
 .form-inline {
   background-color: rgb(220, 247, 254)
 }
@@ -320,9 +353,37 @@
 
 .newUser {
   border: none;
-  padding: auto;
-  align-self: center;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
+
+.alignButton{
+  display: flex;
+  justify-content: center;
+}
+
+.deviceIdBox {
+  margin-left: 8px;
+  width: 22em;
+}
+
+.makeBox {
+  margin-left: 30%;
+  width: 12%;
+}
+
+.modelBox {
+  margin-left: 1.4em;
+  width: 12%;
+}
+
+.osVersionBox {
+  margin-left: 1.3em;
+  margin-right: 3em;
+  width: 6em
+}
+
+
 
 @media all and (max-width:1070px) {
   .phoneList {

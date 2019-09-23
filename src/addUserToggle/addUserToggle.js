@@ -14,19 +14,20 @@ class AddUser extends Component {
         this.setState((prevState) =>{
             return {addNewUserOpen: !prevState.addNewUserOpen}
         })
-        console.log("Yes")
     }
 
     render(){
         let addUserForm;
-
         if(this.state.addNewUserOpen) {
-            addUserForm = <AddUserForm removeNewUserinput={this.addUserClickHandler} updateState={this.props.updateState} click={this.props.click} firstName={this.props.firstName} userID={this.props.userID} lastName={this.props.lastName} key={this.props.key} state={this.props.state}/>
+            addUserForm = <AddUserForm removeNewUserinput={this.addUserClickHandler} updateState={this.props.updateState}  state={this.props.state} prevKey={this.props.prevKey}/>
         }
+
         return(
             <div>
                 {addUserForm}
-                <button className="newUser" onClick={this.addUserClickHandler}><FontAwesomeIcon icon={faPlusCircle} /> Add New</button>
+                <div className="alignButton">
+                    <button className="newUser" onClick={this.addUserClickHandler}><FontAwesomeIcon icon={faPlusCircle} /> Add New</button>
+                </div>
             </div>            
         )
     }
