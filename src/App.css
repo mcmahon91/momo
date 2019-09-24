@@ -310,6 +310,15 @@
   margin: 5px
 }
 
+.devicebuttonSubmit{
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  background-color: rgb(90, 171, 73);
+  color: white;
+  margin: 5px
+}
+
 .deleteButton:hover{
   border-radius: 50%;
   width: 1.7em;
@@ -330,6 +339,17 @@
   background-color: red;
   color: white;
   margin-top: 6px;
+  border: none;
+  margin-left: 5px;
+}
+
+.deleteButtonOnEdit{
+  border-radius: 50%;
+  width: 1.7em;
+  height: 1.7em;
+  background-color: red;
+  color: white;
+  margin-top: 0px;
   border: none;
   margin-left: 5px;
 }
@@ -397,8 +417,9 @@
 
 .osVersionBox {
   margin-left: 1.3em;
-  margin-right: 3em;
-  width: 6em
+  margin-right: 1em;
+  width: 6em;
+  border: 1px solid black
 }
 
 .editUserId {

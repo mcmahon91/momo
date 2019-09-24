@@ -19,8 +19,6 @@ class UserPage extends Component {
         "prevUserKey": 0
     };
 
-    
-
     componentDidMount() {
         this.users.on('value', snap =>{
             this.setState({
@@ -33,7 +31,6 @@ class UserPage extends Component {
                 prevUserKey: snap.val()
             })
         })
-
     }
 
     updateState = (newState) => {
@@ -54,14 +51,12 @@ class UserPage extends Component {
         )
     }
 
-
-
-
     updateUserInDatabase = (updatedUserinfo, Key) => {
-        let users = this.state.users
+        let userss = this.state.users
         let i = 0 
-        for(i = 0; i< users.length; i++){
-            if(users[i].Key == Key){
+        for(i = 0; i< userss.length; i++){
+            if(userss[i].Key == Key){
+                console.log(this.users.child(i))
                 this.users.child(i).set({
                     "Key": updatedUserinfo.Key,
                     "firstName" : updatedUserinfo.firstName,
@@ -71,7 +66,6 @@ class UserPage extends Component {
             }
         }
     }
-
 
     render(){
         return (

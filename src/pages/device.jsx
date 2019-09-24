@@ -65,7 +65,6 @@ class DevicePage extends Component {
 }
   
   handleSubmit = (e) => {
-
     e.preventDefault();
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes();
@@ -77,25 +76,46 @@ class DevicePage extends Component {
 
     console.log(checkPhonePicked)
 
-    let updatedState = phoneState.map(updatePhoneState)
+      let i = 0
 
-    function updatePhoneState(phone){
-      if (phone.name === checkPhonePicked){
-        console.log(phone.name)
-        accessPhonesDatabase.child(phone.key).set({
-          "checkOutTime" : time,
-          "checkedOutBy" : personPicked,
-          "id" : phone.id,
-          "key" : phone.key,
-          "make" : phone.make,
-          "model" : phone.model,
-          "os" : phone.os,
-          "name" : phone.name
-        })
+      for (i = 0; i < phoneState.length; i++){
+        if(phoneState[i].name == checkPhonePicked){
+          this.phonesUpdated.child(i).set({
+            "checkOutTime" : time,
+            "checkedOutBy" : personPicked,
+            "id" : phoneState[i].id,
+            "key" : phoneState[i].key,
+            "make" : phoneState[i].make,
+            "model" : phoneState[i].model,
+            "os" : phoneState[i].os,
+            "name" : phoneState[i].name
+          })
+        }
       }
-    }
+
+    //let updatedState = phoneState.map(updatePhoneState)
+
+    // function updatePhoneState(phone){
+    //   let i = 0
+
+    //   for (i = 0; i < phoneState.length; i++){
+    //     if(phoneState[i].name == checkPhonePicked){
+    //       accessPhonesDatabase.child(phone.key).set({
+    //         "checkOutTime" : time,
+    //         "checkedOutBy" : personPicked,
+    //         "id" : phone.id,
+    //         "key" : phone.key,
+    //         "make" : phone.make,
+    //         "model" : phone.model,
+    //         "os" : phone.os,
+    //         "name" : phone.name
+    //       })
+    //     }
+    //   }
+    // }
     e.currentTarget.reset()
   }
+
   
   checkIn = (e) => {
     e.preventDefault();
@@ -104,23 +124,22 @@ class DevicePage extends Component {
     let phoneToClear = this.phonePickedClear.current.value
     let accessPhonesDatabase = this.phonesUpdated
 
-    let clearUser = phoneState.map(updateClearUser)
+    let i = 0
 
-    function updateClearUser(phone){
-      if (phone.name === phoneToClear){
-        console.log(phone.name)
-        accessPhonesDatabase.child(phone.key).set({
-          "checkOutTime" : "",
-          "checkedOutBy" : "Available",
-          "id" : phone.id,
-          "key" : phone.key,
-          "make" : phone.make,
-          "model" : phone.model,
-          "os" : phone.os,
-          "name" : phone.name
-        })
+      for (i = 0; i < phoneState.length; i++){
+        if(phoneState[i].name == phoneToClear){
+          this.phonesUpdated.child(i).set({
+            "checkOutTime" : "",
+            "checkedOutBy" : "Available",
+            "id" : phoneState[i].id,
+            "key" : phoneState[i].key,
+            "make" : phoneState[i].make,
+            "model" : phoneState[i].model,
+            "os" : phoneState[i].os,
+            "name" : phoneState[i].name
+          })
+        }
       }
-    }
   }
 
   deleteDevice = (key) => {
@@ -130,6 +149,27 @@ class DevicePage extends Component {
     this.phonesUpdated.set(
       listOfDevices.filter(device => device.key !== key)
     )
+  }
+
+  updateDeviceInDatabase = (updatedDeviceInfo, key) => {
+    console.log(key)
+    let devices = this.state.phones
+    let i = 0
+    for(i = 0; i < devices.length; i++) {
+      if(devices[i].key == key){
+        this.phonesUpdated.child(i).set({
+          "checkOutTime" : "",
+          "checkedOutBy" : "Available",
+          "id" : updatedDeviceInfo.id,
+          "key" : updatedDeviceInfo.key,
+          "make" : updatedDeviceInfo.make,
+          "model" : updatedDeviceInfo.model,
+          "os" : updatedDeviceInfo.os,
+          "name" : updatedDeviceInfo.name
+        })
+      }
+    }
+    
   }
   
   render() {
@@ -165,6 +205,8 @@ class DevicePage extends Component {
                       index={phone.key}
                       deleteDevice={this.deleteDevice}
                       key={phone.key}
+                      name={phone.name}
+                      updateDeviceInDatabase={this.updateDeviceInDatabase}
                     />
 
                   )}

@@ -46,7 +46,6 @@ class OneUser extends Component {
             type="text"
             className="editUserId"
             defaultValue={this.props.userid}
-            placeholder="User ID"
             ref={input => this.userID = input}
             required
             />

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 class OnePhone extends Component {
 
@@ -13,6 +13,21 @@ class OnePhone extends Component {
         this.setState((prevState) => {
             return{editData: !prevState.editData}
         })
+    }
+
+    updateDevice = (a, index) => {
+        a.preventDefault();
+        console.log(this.props.index)
+        console.log("KEY " + index)
+        const deviceID = this.deviceID.value
+        const make = this.make.value
+        const model = this.model.value
+        const os = this.osVersion.value
+        const updatedDeviceInfo = {key: index, id: deviceID, make: make, model: model, os: os, checkOutTime: this.props.checkOutTime, checkedOutBy: this.props.checkedOutBy, name: this.props.name}
+        
+        this.props.updateDeviceInDatabase(updatedDeviceInfo, index)
+        this.editClickHandler()
+
     }
 
 
@@ -28,13 +43,49 @@ class OnePhone extends Component {
                         <PhoneMake phoneMake={this.props.make}/>
                         <PhoneModel phoneModel={this.props.model} />
                         <OsVersion osVersion={this.props.os} />
-                        <button className="editButton" ><FontAwesomeIcon icon={faEdit} /></button>
+                        <button className="editButton" onClick={this.editClickHandler}><FontAwesomeIcon icon={faEdit} /></button>
                         <button className="deleteButton" onClick={() => this.props.deleteDevice(this.props.index)}>X </button>
                         </div>
         } else {
             dataShown = <div>
-            <button>Hi</button>
-            </div>
+            <form className="form-inline line" onSubmit={(a) => this.updateDevice(a, this.props.index)}>
+                <input
+                type="text"
+                className="deviceIdBox"
+                placeholder="Device ID"
+                defaultValue={this.props.id}
+                ref={input => this.deviceID = input}
+                required
+                />
+                <input
+                type="text"
+                className="makeBox"
+                defaultValue={this.props.make}
+                ref={input => this.make = input}
+                required
+                />
+                <input
+                type="text"
+                className="modelBox"
+                defaultValue={this.props.model}
+                ref={input => this.model = input}
+                required
+                />
+                <input
+                type="text"
+                className="osVersionBox"
+                defaultValue={this.props.os}
+                ref={input => this.osVersion = input}
+                required
+                />
+                <button 
+                type="submit" 
+                className="devicebuttonSubmit">
+                    <FontAwesomeIcon icon={faCheck} />
+                </button>
+                <button className="deleteButtonOnEdit" onClick={this.editClickHandler}>X</button>
+            </form>
+        </div>
         }
 
 
@@ -88,8 +139,3 @@ const OsVersion = (props) => {
 }
 
 export default OnePhone
-// export function OnePhone() {}
-// export function PhoneName() {};
-// export function PhoneID() {};
-// export function CheckedOutBy() {};
-// export function CheckOutTime() {};
