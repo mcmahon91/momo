@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import AddUserForm from './addUserForm'
 
 class AddUser extends Component {

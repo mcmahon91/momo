@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faBars, faMobileAlt, faUserFriends, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { faAppStore, faAppStoreIos } from '@fortawesome/fontawesome-free-brands'
+import { faMobileAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import { faAppStore } from '@fortawesome/fontawesome-free-brands'
 import '../App.css';
 
 import SideBar from './SideBar'

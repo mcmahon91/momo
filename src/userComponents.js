@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimesCircle, faEdit, faCheck} from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faCheck} from '@fortawesome/free-solid-svg-icons'
 
 class OneUser extends Component {
 

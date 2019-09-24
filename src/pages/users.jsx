@@ -4,8 +4,6 @@ import {testdatabase} from "../databases/testdatabase.js"
 import firebase from 'firebase';
 import SideBar from './SideBar'
 import OneUser from '../userComponents'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import AddUser from '../addUserToggle/addUserToggle'
 import OneUserTitle from '../userTitle'
 
@@ -55,7 +53,7 @@ class UserPage extends Component {
         let userss = this.state.users
         let i = 0 
         for(i = 0; i< userss.length; i++){
-            if(userss[i].Key == Key){
+            if(userss[i].Key === Key){
                 console.log(this.users.child(i))
                 this.users.child(i).set({
                     "Key": updatedUserinfo.Key,

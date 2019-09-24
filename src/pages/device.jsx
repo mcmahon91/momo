@@ -71,7 +71,6 @@ class DevicePage extends Component {
 
     let phoneState = this.state.phones
     let checkPhonePicked = this.phonePicked.current.value
-    let accessPhonesDatabase = this.phonesUpdated
     let personPicked = this.person.current.value
 
     console.log(checkPhonePicked)
@@ -79,7 +78,7 @@ class DevicePage extends Component {
       let i = 0
 
       for (i = 0; i < phoneState.length; i++){
-        if(phoneState[i].name == checkPhonePicked){
+        if(phoneState[i].model === checkPhonePicked){
           this.phonesUpdated.child(i).set({
             "checkOutTime" : time,
             "checkedOutBy" : personPicked,
@@ -92,27 +91,6 @@ class DevicePage extends Component {
           })
         }
       }
-
-    //let updatedState = phoneState.map(updatePhoneState)
-
-    // function updatePhoneState(phone){
-    //   let i = 0
-
-    //   for (i = 0; i < phoneState.length; i++){
-    //     if(phoneState[i].name == checkPhonePicked){
-    //       accessPhonesDatabase.child(phone.key).set({
-    //         "checkOutTime" : time,
-    //         "checkedOutBy" : personPicked,
-    //         "id" : phone.id,
-    //         "key" : phone.key,
-    //         "make" : phone.make,
-    //         "model" : phone.model,
-    //         "os" : phone.os,
-    //         "name" : phone.name
-    //       })
-    //     }
-    //   }
-    // }
     e.currentTarget.reset()
   }
 
@@ -122,12 +100,11 @@ class DevicePage extends Component {
 
     let phoneState = this.state.phones
     let phoneToClear = this.phonePickedClear.current.value
-    let accessPhonesDatabase = this.phonesUpdated
 
     let i = 0
 
       for (i = 0; i < phoneState.length; i++){
-        if(phoneState[i].name == phoneToClear){
+        if(phoneState[i].model === phoneToClear){
           this.phonesUpdated.child(i).set({
             "checkOutTime" : "",
             "checkedOutBy" : "Available",
@@ -156,7 +133,7 @@ class DevicePage extends Component {
     let devices = this.state.phones
     let i = 0
     for(i = 0; i < devices.length; i++) {
-      if(devices[i].key == key){
+      if(devices[i].key === key){
         this.phonesUpdated.child(i).set({
           "checkOutTime" : "",
           "checkedOutBy" : "Available",
@@ -208,13 +185,9 @@ class DevicePage extends Component {
                       name={phone.name}
                       updateDeviceInDatabase={this.updateDeviceInDatabase}
                     />
-
                   )}
                   <AddDevice updateState={this.updateState} state={this.state.phones} prevDeviceKey={this.state.prevDeviceKey}/>
                 </div>
-
-
-
                 <div className="checkOutBar">
                   <p>Check Out:</p>
                   <form onSubmit={this.handleSubmit}>
@@ -224,7 +197,7 @@ class DevicePage extends Component {
                         <Form.Control as="select" ref={this.phonePicked}>
                           <option>Choose...</option>
                           {this.state.phones.map((phone, index) =>
-                            <option>{phone.name}</option>
+                            <option>{phone.model}</option>
                           )}
                         </Form.Control>
                       </Form.Group>
@@ -246,7 +219,7 @@ class DevicePage extends Component {
                         <Form.Control as="select" ref={this.phonePickedClear}>
                           <option>Choose...</option>
                           {this.state.phones.map((phone, index) =>
-                            <option>{phone.name}</option>
+                            <option>{phone.model}</option>
                           )}
                         </Form.Control>
                       </Form.Group>
@@ -261,250 +234,3 @@ class DevicePage extends Component {
     }
   }
 export default DevicePage
-
-
-
-      //{
-        // if (phone.name == this.phonePicked){
-        //   this.phonesUpdated.child(this.phonePicked).set({
-        //     "checkOutTime" : time,
-        //     "checkedOutBy" : this.person.current.value,
-        //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-        //     "key" : "1",
-        //     "make" : "Apple",
-        //     "model" : phone.child(model),
-        //     "os" : "",
-        //     "name" : "Apple iPhone 6"
-        //   })
-        // }
-      
-      // if(this.phonePicked.current.value === "Apple iPhone 6"){
-      //   this.updateIphone6.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "1",
-      //     "make" : "Apple",
-      //     "model" : "iPhone 6",
-      //     "os" : "",
-      //     "name" : "Apple iPhone 6"
-      //   })
-      // } else if (this.phonePicked.current.value === "Apple iPhone 7") {
-      //   this.updateIphone7.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "2",
-      //     "make" : "Apple",
-      //     "model" : "iPhone 7",
-      //     "os" : "",
-      //     "name" : "Apple iPhone 7"
-      //   })
-      // }else if (this.phonePicked.current.value === "Apple iPhone 8") {
-      //   this.updateIphone8.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "3",
-      //     "make" : "Apple",
-      //     "model" : "iPhone 8",
-      //     "os" : "",
-      //     "name" : "Apple iPhone 8"
-      //   })
-      // } else if (this.phonePicked.current.value === "Apple iPhone X") {
-      //   this.updateIphoneX.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "4",
-      //     "make" : "Apple",
-      //     "model" : "iPhone X",
-      //     "os" : "",
-      //     "name" : "Apple iPhone X"
-      //   })
-      // } else if (this.phonePicked.current.value === "Apple iPhone XS") {
-      //   this.updateIphoneXS.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "5",
-      //     "make" : "Apple",
-      //     "model" : "iPhone XS",
-      //     "os" : "",
-      //     "name" : "Apple iPhone XS"
-      //   })
-      // } else if (this.phonePicked.current.value === "Samsung 1") {
-      //   this.updateSamsung1.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "6",
-      //     "make" : "Samsung",
-      //     "model" : "1",
-      //     "os" : "",
-      //     "name" : "Samsung 1"
-      //   })
-      // } else if (this.phonePicked.current.value === "Samsung 2") {
-      //   this.updateSamsung2.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "7",
-      //     "make" : "Samsung",
-      //     "model" : "2",
-      //     "os" : "",
-      //     "name" : "Samsung 2"
-      //   })
-      // } else if (this.phonePicked.current.value === "Samsung 3") {
-      //   this.updateSamsung3.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "8",
-      //     "make" : "Samsung",
-      //     "model" : "3",
-      //     "os" : "",
-      //     "name" : "Samsung 3"
-      //   })
-      // } else if (this.phonePicked.current.value === "Samsung 4") {
-      //   this.updateSamsung4.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "9",
-      //     "make" : "Samsung",
-      //     "model" : "4",
-      //     "os" : "",
-      //     "name" : "Samsung 4"
-      //   })
-      // } else if (this.phonePicked.current.value === "Samsung 5") {
-      //   this.updateSamsung5.update({
-      //     "checkOutTime" : time,
-      //     "checkedOutBy" : this.person.current.value,
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "10",
-      //     "make" : "Samsung",
-      //     "model" : "5",
-      //     "os" : "",
-      //     "name" : "Samsung 5"
-      //   })
-      // }
-
-
-
-      // if(this.phonePickedClear.current.value === "Apple iPhone 6"){
-      //   console.log(this.phonePicked.current.value)
-      //   this.updateIphone6.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : phone.id,
-      //       "key" : phone.key,
-      //       "make" : phone.make,
-      //       "model" : phone.model,
-      //       "os" : phone.os,
-      //       "name" : phone.name
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Apple iPhone 7") {
-      //   this.updateIphone7.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "2",
-      //       "make" : "Apple",
-      //       "model" : "iPhone 7",
-
-      //       "os" : ""
-      //   })
-      // }else if (this.phonePickedClear.current.value === "Apple iPhone 8") {
-      //   this.updateIphone8.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "3",
-      //       "make" : "Apple",
-      //       "model" : "iPhone 8",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Apple iPhone X") {
-      //   this.updateIphoneX.update({
-      //     "checkOutTime" : "",
-      //     "checkedOutBy" : "Available",
-      //     "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //     "key" : "4",
-      //     "make" : "Apple",
-      //     "model" : "iPhone X",
-      //     "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Apple iPhone XS") {
-      //   this.updateIphoneXS.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "5",
-      //       "make" : "Apple",
-      //       "model" : "iPhone XS",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Samsung 1") {
-      //   this.updateSamsung1.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "6",
-      //       "make" : "Samsung",
-      //       "model" : "1",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Samsung 2") {
-      //   this.updateSamsung2.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "7",
-      //       "make" : "Samsung",
-      //       "model" : "2",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Samsung 3") {
-      //   this.updateSamsung3.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "8",
-      //       "make" : "Samsung",
-      //       "model" : "3",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Samsung 4") {
-      //   this.updateSamsung4.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "9",
-      //       "make" : "Samsung",
-      //       "model" : "4",
-      //       "os" : ""
-      //   })
-      // } else if (this.phonePickedClear.current.value === "Samsung 5") {
-      //   this.updateSamsung5.update({
-      //       "checkOutTime" : "",
-      //       "checkedOutBy" : "Available",
-      //       "id" : "sdgbf-savwsefv-wevvewv-wevwvwe",
-      //       "key" : "10",
-      //       "make" : "Samsung",
-      //       "model" : "5",
-      //       "os" : ""
-      //   })
-      // }
-
-
-          // updateIphone6 = this.app.database().ref().child('phones').child("0")
-    // updateIphone7 = this.app.database().ref().child('phones').child("1")
-    // updateIphone8 = this.app.database().ref().child('phones').child("2")
-    // updateIphoneX = this.app.database().ref().child('phones').child("3")
-    // updateIphoneXS = this.app.database().ref().child('phones').child("4")
-    // updateSamsung1 = this.app.database().ref().child('phones').child("5")
-    // updateSamsung2 = this.app.database().ref().child('phones').child("6")
-    // updateSamsung3 = this.app.database().ref().child('phones').child("7")
-    // updateSamsung4 = this.app.database().ref().child('phones').child("8")
-    // updateSamsung5 = this.app.database().ref().child('phones').child("9")
