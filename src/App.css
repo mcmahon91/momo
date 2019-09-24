@@ -244,8 +244,8 @@
 }
 
 .divider {
-  color: white;
-  margin: 10px 10px 5px 6px;
+  background-color: white;
+  margin: 8px 4px 3px 5px;
 }
 
 .mobileIconButton {
@@ -295,7 +295,7 @@
 }
 
 .versionBox {
-  width: 5em;
+  width: 5%;
 }
 
 .appButtonSubmit{
@@ -360,6 +360,10 @@
 
 .form-inline {
   background-color: rgb(220, 247, 254);
+}
+
+.addAppForm {
+  background-color: rgb(236, 236, 236);
 }
 
 .form-inline-edit {

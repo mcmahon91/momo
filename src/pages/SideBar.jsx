@@ -6,6 +6,7 @@ import '../App.css';
 import DrawerToggleButton from '../SideDraw/DrawerToggleButton'
 import SideDraw from '../SideDraw/SideDraw'
 import Backdrop from '../SideDraw/Backdrop'
+import Icon from '../momoicon/icon.png'
 
 class SideBar extends Component {
 
@@ -13,7 +14,8 @@ class SideBar extends Component {
         sideDrawerOpen: false
     }
 
-    drawerToggleClickHandler = () => {
+    drawerToggleClickHandler = (a) => {
+        a.preventDefault()
         this.setState((prevState) => {
             return {sideDrawerOpen: !prevState.sideDrawerOpen}
         })
@@ -34,10 +36,12 @@ class SideBar extends Component {
     return (
         <div className="sidebarAndSideDraw">
             <div className="sidebar">
-            <img style={{backgroundColor: "red", alt: ""}}
-                source={require('../momoicon/icon.png')}
-            />
-                <p className="divider">____</p>
+                <img 
+                    style={{width: "33px", marginLeft: "4px", marginTop: "8px"}}
+                    src={Icon}
+                    alt={""}
+                />
+                <hr className="divider"/>
                 <a href="/"><FontAwesomeIcon className="arrow" icon={ faArrowLeft }/></a>
                 <DrawerToggleButton click={this.drawerToggleClickHandler}/>
                 <a href="/devices"><FontAwesomeIcon className="mobile" icon={ faMobileAlt }/></a>

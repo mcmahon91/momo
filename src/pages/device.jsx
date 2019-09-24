@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import '../App.css';
-import {testdatabase} from "../databases/testdatabase.js"
-import Form from 'react-bootstrap/Form'
+import {testdatabase} from "../databases/testdatabase.js";
+import Form from 'react-bootstrap/Form';
 import { Col } from 'react-bootstrap';
 import firebase from 'firebase';
-import OnePhone from '../phoneComponents.js'
-import OnePhoneTitle from '../phoneTitle'
-import SideBar from './SideBar'
-import AddDevice from '../addDevicetoggle/addDeviceToggle'
+import OnePhone from '../phoneComponents.js';
+import OnePhoneTitle from '../phoneTitle';
+import SideBar from './SideBar';
+import AddDevice from '../addDevicetoggle/addDeviceToggle';
 
 
 
@@ -67,7 +67,10 @@ class DevicePage extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     var today = new Date();
-    var time = today.getHours() + ":" + today.getMinutes();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var minutes = (today.getMinutes() < 10? '0' : '') + today.getMinutes();
+    var time = today.getHours() + ":" + minutes
+    var dateTime = date+' '+time;
 
     let phoneState = this.state.phones
     let checkPhonePicked = this.phonePicked.current.value
@@ -80,7 +83,7 @@ class DevicePage extends Component {
       for (i = 0; i < phoneState.length; i++){
         if(phoneState[i].model === checkPhonePicked){
           this.phonesUpdated.child(i).set({
-            "checkOutTime" : time,
+            "checkOutTime" : dateTime,
             "checkedOutBy" : personPicked,
             "id" : phoneState[i].id,
             "key" : phoneState[i].key,
@@ -97,10 +100,8 @@ class DevicePage extends Component {
   
   checkIn = (e) => {
     e.preventDefault();
-
     let phoneState = this.state.phones
     let phoneToClear = this.phonePickedClear.current.value
-
     let i = 0
 
       for (i = 0; i < phoneState.length; i++){
@@ -233,4 +234,5 @@ class DevicePage extends Component {
       );
     }
   }
+
 export default DevicePage

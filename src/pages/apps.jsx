@@ -58,7 +58,7 @@ class AppsPage extends Component {
                             appVersion={"Version"}
                         />
                     </div>
-                    <form className="form-inline" onSubmit={this.onSubmit}>
+                    <form className="addAppForm" onSubmit={this.onSubmit}>
                         <input
                         type="text"
                         className="imageBox"

@@ -11,8 +11,8 @@ const SideDraw = props => (
         <a href="/users" className="usersText"><p>Manage Users</p></a>
         <a href="/apps" className="appText"><p>App Management</p></a>
         <div className="bottomButtons">
-            <a href="" className=""><p>Settings</p></a>
-            <a href="" className=""><p>Logout</p></a>
+            <a href="/" className=""><p>Settings</p></a>
+            <a href="/" className=""><p>Logout</p></a>
         </div>
     </nav>
 )
