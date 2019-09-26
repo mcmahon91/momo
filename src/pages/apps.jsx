@@ -6,16 +6,24 @@ import {testdatabase} from "../databases/testdatabase.js"
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import ImageUpload from '../components/ImageUpload'
+import FileUploader from 'react-firebase-file-uploader'
+
 
 
 class AppsPage extends Component {
 
     appDatabase = firebase.initializeApp(testdatabase);
     apps = this.appDatabase.database().ref().child('apps')
+    prevAppKeyValue = this.appDatabase.database().ref().child('prevAppKey')
+    storage = firebase.storage()
+
 
     state = {
-        "apps":[]
-    }
+        "apps":[],
+        "prevAppKey": 1,
+        "task" : ""
+    } 
 
     componentDidMount() {
 
@@ -24,25 +32,67 @@ class AppsPage extends Component {
                 apps: snap.val()
             })
         })
+
+        this.prevAppKeyValue.on('value', snap =>{
+            this.setState({
+                prevAppKey: snap.val()
+            })
+        })
+    }
+
+    onChange =(e)=> {
+        var file = e.target.files[0]
+        var storageRef = this.storage.ref('apps/' + (this.state.prevAppKey + 1))
+        var task = storageRef.put(file)
+        this.setState({
+            task: task
+        })
     }
 
     onSubmit = (a) => {
         a.preventDefault();
-        const image = this.image.value;
+        // const image = this.image.value;
         const name = this.appName.value;
         const description = this.description.value;
         const version = this.version.value;
-        const key = this.state.apps.length;
+        const key = this.state.prevAppKey + 1;
 
-        const info = {key: key.toString(), description: description, image: image, name: name, version: version}
+        this.prevAppKeyValue.set(
+            this.state.prevAppKey + 1
+        )
+
+        //const info = {key: key.toString(), description: description, image: image, name: name, version: version}
+        const info = {key: key.toString(), description: description, name: name, version: version}
         const data = [...this.state.apps, info]
         this.apps.set(
             data
         )
+
+        this.state.task.on('state_changed', 
+            function progress(snapshot){
+                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // uploader.value = percentage
+            },
+            
+            function error(err) {
+
+            },
+
+            function complete() {
+
+            }
+        )
+
         a.currentTarget.reset()
     }
 
     render() {
+
+        var file
+        var storageRef
+        var task
+        console.log(file)
+
         return (
             <div>
             <SideBar />
@@ -60,25 +110,32 @@ class AppsPage extends Component {
                     </div>
                     <form className="addAppForm" onSubmit={this.onSubmit}>
                         <input
-                        type="text"
-                        className="imageBox"
-                        placeholder=""
-                        ref={input => this.image = input}/>
+                        type="file"
+                        required
+                        // ref={input => this.image = input}
+                        onChange={(e) => this.onChange(e)}
+                        />
                         <input
                         type="text"
                         className="appNameBox"
                         placeholder="App Name"
+                        required
                         ref={input => this.appName = input}/>
                         <input
                         type="text"
                         className="descriptionBox"
-                        placeholder="Description - 300 word limit"
+                        placeholder="Description - 300 character limit"
+                        required
+                        maxLength="300"
                         ref={input => this.description = input}/>
                         <input
                         type="text"
                         className="versionBox"
                         placeholder="Version"
-                        ref={input => this.version = input}/>
+                        ref={input => this.version = input}
+                        required
+                        />
+
                         <button 
                         type="submit" 
                         className="appButtonSubmit">
@@ -108,6 +165,7 @@ class AppsPage extends Component {
                             />
                         )}
                     </div>
+                <ImageUpload storage={this.storage}/>
                 </div>
             </div>
         )

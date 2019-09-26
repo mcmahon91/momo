@@ -10,12 +10,9 @@ import SideBar from './SideBar';
 import AddDevice from '../addDevicetoggle/addDeviceToggle';
 
 
-
-
 class DevicePage extends Component {
 
   app = firebase.initializeApp(testdatabase);
-
   phonesUpdated = this.app.database().ref().child('phones')
   usersUpdated = this.app.database().ref().child('users')
   prevDeviceKeyValue = this.app.database().ref().child('prevDeviceKey')
@@ -136,8 +133,8 @@ class DevicePage extends Component {
     for(i = 0; i < devices.length; i++) {
       if(devices[i].key === key){
         this.phonesUpdated.child(i).set({
-          "checkOutTime" : "",
-          "checkedOutBy" : "Available",
+          "checkOutTime" : updatedDeviceInfo.checkOutTime,
+          "checkedOutBy" : updatedDeviceInfo.checkedOutBy,
           "id" : updatedDeviceInfo.id,
           "key" : updatedDeviceInfo.key,
           "make" : updatedDeviceInfo.make,
