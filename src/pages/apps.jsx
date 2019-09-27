@@ -6,8 +6,7 @@ import {testdatabase} from "../databases/testdatabase.js"
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import ImageUpload from '../components/ImageUpload'
-import FileUploader from 'react-firebase-file-uploader'
+import OneAppTitle from '../components/AppTitle'
 
 
 
@@ -17,28 +16,69 @@ class AppsPage extends Component {
     apps = this.appDatabase.database().ref().child('apps')
     prevAppKeyValue = this.appDatabase.database().ref().child('prevAppKey')
     storage = firebase.storage()
-
+    appIcons = this.storage.ref('apps/')
+    storageRef = this.storage.ref('apps/0')
+    link 
+    
 
     state = {
         "apps":[],
         "prevAppKey": 1,
-        "task" : ""
+        "task" : "",
+        "appIcons": [],
+        'url': [],
+        'link': ''
+
     } 
 
+
     componentDidMount() {
-
-        this.apps.on('value', snap => {
-            this.setState({
-                apps: snap.val()
-            })
-        })
-
+        
         this.prevAppKeyValue.on('value', snap =>{
             this.setState({
                 prevAppKey: snap.val()
             })
         })
+
+        this.apps.on('value', snap => {
+            this.setState({
+                apps: snap.val()
+            })
+            this.populateState()
+        })
+
+
+        this.storage.ref('apps/0').getDownloadURL()
+        .then((url) =>{
+            this.setState({
+                link: url
+            })
+            //this.state.link = url
+        })
+
+        this.state.apps.map((apps) => 
+            this.state.appIcons.push(apps.key)
+        )
     }
+
+    populateState() {
+        let i = 0
+        
+        for (i = 0; i < this.state.apps.length; i++){
+            console.log("Key: " + this.state.apps[i].key)
+            console.log("i " + i)
+            this.storage.ref(`apps/${this.state.apps[i].key}`).getDownloadURL()
+                .then((url) => {
+                    console.log(i)
+                    const newUrls = [...this.state.url, url]
+                    this.setState({
+                        url: newUrls
+                    })
+                    console.log(newUrls)
+                })
+        }
+    }
+
 
     onChange =(e)=> {
         var file = e.target.files[0]
@@ -52,6 +92,7 @@ class AppsPage extends Component {
     onSubmit = (a) => {
         a.preventDefault();
         // const image = this.image.value;
+        //const image = this.appIcons.child(this.state.prevAppKey + 1)
         const name = this.appName.value;
         const description = this.description.value;
         const version = this.version.value;
@@ -63,6 +104,7 @@ class AppsPage extends Component {
 
         //const info = {key: key.toString(), description: description, image: image, name: name, version: version}
         const info = {key: key.toString(), description: description, name: name, version: version}
+        
         const data = [...this.state.apps, info]
         this.apps.set(
             data
@@ -70,29 +112,18 @@ class AppsPage extends Component {
 
         this.state.task.on('state_changed', 
             function progress(snapshot){
-                var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-                // uploader.value = percentage
             },
-            
             function error(err) {
-
             },
-
             function complete() {
-
             }
         )
 
         a.currentTarget.reset()
     }
 
+
     render() {
-
-        var file
-        var storageRef
-        var task
-        console.log(file)
-
         return (
             <div>
             <SideBar />
@@ -101,7 +132,7 @@ class AppsPage extends Component {
                 <h3 className="header">Add New App</h3>
                 <div className="newApp" style={{backgroundColor: "rgb(236,236,236)"}}>
                     <div style={{backgroundColor: "rgb(125,166,177)"}}>
-                        <OneApp 
+                        <OneAppTitle 
                             image={"Image"}
                             appName={"Name"}
                             appDescription={"Description"}
@@ -148,7 +179,7 @@ class AppsPage extends Component {
                 <h3 className="header">Available Apps</h3>
                     <div className="appList" style={{backgroundColor: "rgb(236,236,236)"}}>
                         <div style={{backgroundColor: "rgb(125,166,177)"}}>
-                            <OneApp 
+                            <OneAppTitle 
                                 image={"Image"}
                                 appName={"Name"}
                                 appDescription={"Description"}
@@ -157,15 +188,14 @@ class AppsPage extends Component {
                         </div>
                         {this.state.apps.map((app, index) =>
                             <OneApp 
-                                image={app.image}
+                                image={this.state.url[index]}
                                 appName={app.name}
                                 appDescription={app.description}
                                 appVersion={app.version}
-                                key={app.key}
+                                index={app.key}
                             />
                         )}
                     </div>
-                <ImageUpload storage={this.storage}/>
                 </div>
             </div>
         )

@@ -109,11 +109,15 @@
   border-radius: 6px;
 }
 
-.appImage {
-  margin: 7px;
+.appImageTitle {
+  margin: 7px 7px 7px 7px;
   display: flex;
   font-size: 1em;
-  width: 5em;
+  width: 62px
+}
+
+.appImage{
+  margin: 7px 7px 7px 7px;
 }
 
 .appName {
@@ -434,6 +438,7 @@
   margin-right: 25px;
   width: 130px;
 }
+
 
 
 

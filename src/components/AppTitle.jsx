@@ -1,9 +1,10 @@
+
 import React from 'react';
 
-const OneApp = (props) => {
+const OneAppTitle = (props) => {
     return (
         <div className="appLine">
-            <AppImage image={props.image}/>
+            <AppImage image={"Image"}/>
             <AppName appName={props.appName} />
             <AppDescription appDescription={props.appDescription} />
             <AppVersion appVersion={props.appVersion} />
@@ -15,7 +16,7 @@ const OneApp = (props) => {
 
 const AppImage = (props) => {
     return (
-        <img className="appImage" src={props.image} style={{backgroundColor: "red", width: "50px", height: "50px"}}/>
+        <p className="appImageTitle">{props.image}</p>
     )
 }
 
@@ -38,4 +39,4 @@ const AppVersion = (props) => {
 }
 
 
-export default OneApp;
+export default OneAppTitle;
