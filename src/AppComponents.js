@@ -1,6 +1,7 @@
 import React from 'react';
 
 const OneApp = (props) => {
+    console.log(props.image[1])
     return (
         <div className="appLine">
             <AppImage image={props.image}/>

@@ -5,7 +5,7 @@ import OneApp from "../AppComponents";
 import {testdatabase} from "../databases/testdatabase.js"
 import firebase from 'firebase';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faCloudUploadAlt} from '@fortawesome/free-solid-svg-icons'
 import OneAppTitle from '../components/AppTitle'
 
 
@@ -18,16 +18,15 @@ class AppsPage extends Component {
     storage = firebase.storage()
     appIcons = this.storage.ref('apps/')
     storageRef = this.storage.ref('apps/0')
-    link 
+    pictures = this.appDatabase.database().ref().child('pictures') 
     
-
     state = {
         "apps":[],
         "prevAppKey": 1,
         "task" : "",
         "appIcons": [],
         'url': [],
-        'link': ''
+        'pictures': []
 
     } 
 
@@ -47,35 +46,30 @@ class AppsPage extends Component {
             this.populateState()
         })
 
-
-        this.storage.ref('apps/0').getDownloadURL()
-        .then((url) =>{
-            this.setState({
-                link: url
-            })
-            //this.state.link = url
-        })
-
         this.state.apps.map((apps) => 
             this.state.appIcons.push(apps.key)
         )
+
+        this.pictures.on('value', snap =>{
+            this.setState({
+                pictures: snap.val()
+            })
+        })
     }
 
     populateState() {
-        let i = 0
-        
-        for (i = 0; i < this.state.apps.length; i++){
-            console.log("Key: " + this.state.apps[i].key)
-            console.log("i " + i)
-            this.storage.ref(`apps/${this.state.apps[i].key}`).getDownloadURL()
-                .then((url) => {
-                    console.log(i)
-                    const newUrls = [...this.state.url, url]
-                    this.setState({
-                        url: newUrls
-                    })
-                    console.log(newUrls)
-                })
+        var pictures = this.state.pictures
+        for (let i = 0; i < this.state.apps.length; i++){
+            let key = this.state.apps[i].key
+            this.storage.ref(`apps/${this.state.apps[i].key}`).getDownloadURL().then((url) => {
+                let link = url
+                let data = {key: key.toString(), url: link}
+                pictures = [...pictures, data]
+                console.log(pictures)
+                this.pictures.set(
+                    pictures
+                );
+            });
         }
     }
 
@@ -140,12 +134,27 @@ class AppsPage extends Component {
                         />
                     </div>
                     <form className="addAppForm" onSubmit={this.onSubmit}>
+
+                    <label htmlFor="appUploader" className="custom-file-upload">
+                            <i className="fa fa-cloud-upload">
+                            {/* <FontAwesomeIcon icon={faCloudUploadAlt} /> */}
+                            </i> 
+                        Choose 
+                        <br />
+                        Image
+                    </label>
+
                         <input
+                        id="appUploader"
                         type="file"
                         required
+                        //className="imageUploader"
                         // ref={input => this.image = input}
                         onChange={(e) => this.onChange(e)}
                         />
+
+
+
                         <input
                         type="text"
                         className="appNameBox"
@@ -188,11 +197,12 @@ class AppsPage extends Component {
                         </div>
                         {this.state.apps.map((app, index) =>
                             <OneApp 
-                                image={this.state.url[index]}
+                                image={this.state.pictures}
                                 appName={app.name}
                                 appDescription={app.description}
                                 appVersion={app.version}
-                                index={app.key}
+                                key={app.key}
+                                index={index}
                             />
                         )}
                     </div>

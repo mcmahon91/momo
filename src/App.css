@@ -439,7 +439,19 @@
   width: 130px;
 }
 
+input[type="file"] {
+  display: none;
+}
 
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 1px 8px;
+  margin: 5px 8px 5px 3px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 10px;
+}
 
 
 @media all and (max-width:1070px) {
