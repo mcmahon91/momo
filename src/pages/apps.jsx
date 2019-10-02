@@ -33,6 +33,13 @@ class AppsPage extends Component {
 
     componentDidMount() {
         
+        this.pictures.on('value', snap =>{
+            console.log(snap.val())
+            this.setState({
+                pictures: snap.val()
+            })
+        })
+
         this.prevAppKeyValue.on('value', snap =>{
             this.setState({
                 prevAppKey: snap.val()
@@ -43,35 +50,43 @@ class AppsPage extends Component {
             this.setState({
                 apps: snap.val()
             })
-            this.populateState()
+            // this.populateState()
         })
 
         this.state.apps.map((apps) => 
             this.state.appIcons.push(apps.key)
         )
 
-        this.pictures.on('value', snap =>{
-            this.setState({
-                pictures: snap.val()
-            })
-        })
+
     }
 
-    populateState() {
-        var pictures = this.state.pictures
-        for (let i = 0; i < this.state.apps.length; i++){
-            let key = this.state.apps[i].key
-            this.storage.ref(`apps/${this.state.apps[i].key}`).getDownloadURL().then((url) => {
-                let link = url
-                let data = {key: key.toString(), url: link}
-                pictures = [...pictures, data]
-                console.log(pictures)
-                this.pictures.set(
-                    pictures
-                );
-            });
-        }
-    }
+    // populateState() {
+    //     var pictures = []
+    //     console.log(pictures)
+    //     for (let i = 0; i < this.state.apps.length + 1; i++){
+    //         console.log("i is : " + i)
+    //         console.log("apps length is : " + this.state.apps.length)
+    //         if(i < this.state.apps.length){
+    //             let key = this.state.apps[i].key
+    //             this.storage.ref(`apps/${this.state.apps[i].key}`).getDownloadURL().then((url) => {
+    //                 let link = url
+    //                 let data = {key: key.toString(), url: link}
+    //                 pictures = [...pictures, data]
+    //                 console.log(pictures)
+    //                 this.pictures.set(
+    //                     pictures
+    //                 );
+    //             });
+    //         } else{
+    //             console.log("Hello")
+    //             this.pictures.set(
+    //                 pictures
+    //             );
+    //             console.log(this.state.pictures)
+    //         }
+    //     }
+    //     console.log(pictures)
+    // }
 
 
     onChange =(e)=> {
@@ -118,6 +133,16 @@ class AppsPage extends Component {
 
 
     render() {
+        for(let i = 0; i < this.state.apps.length; i++){
+            console.log(this.state.pictures)
+            console.log(this.state.apps[i].key)
+            for(let j = 0; j < this.state.pictures.length; j++){
+                if(this.state.apps[i].key == this.state.pictures[j].key){
+                    this.state.apps[i].url = this.state.pictures[j].url
+                    console.log(this.state.apps[i].url)
+                }
+            }
+        }
         return (
             <div>
             <SideBar />
