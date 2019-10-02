@@ -222,7 +222,7 @@ class AppsPage extends Component {
                         </div>
                         {this.state.apps.map((app, index) =>
                             <OneApp 
-                                image={this.state.pictures}
+                                image={app.url}
                                 appName={app.name}
                                 appDescription={app.description}
                                 appVersion={app.version}

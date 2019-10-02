@@ -1,11 +1,11 @@
 import React from 'react';
 
 const OneApp = (props) => {
-    let image = props.image[1]
+    let image = props.image
     console.log(image)
     return (
         <div className="appLine">
-            <AppImage image={image}/>
+            <AppImage image={props.image}/>
             <AppName appName={props.appName} />
             <AppDescription appDescription={props.appDescription} />
             <AppVersion appVersion={props.appVersion} />
