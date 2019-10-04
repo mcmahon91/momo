@@ -1,4 +1,5 @@
 import React from 'react';
+import { placeholder } from '@babel/types';
 
 const OnePhoneTitle = (props) => {
     return (
@@ -9,6 +10,7 @@ const OnePhoneTitle = (props) => {
             <PhoneMake phoneMake={props.make}/>
             <PhoneModel phoneModel={props.model} />
             <OsVersion osVersion={props.os} />
+            <Placeholder />
         </div>
     )
 }
@@ -48,5 +50,11 @@ const CheckOutTime = (props) => {
 const OsVersion = (props) => {
     return (
         <p className="osVersion">{props.osVersion}</p>
+    )
+}
+
+const Placeholder = () => {
+    return (
+        <p className="devicePlaceholder">{}</p>
     )
 }

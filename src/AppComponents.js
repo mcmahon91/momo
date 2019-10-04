@@ -1,8 +1,6 @@
 import React from 'react';
 
 const OneApp = (props) => {
-    let image = props.image
-    console.log(image)
     return (
         <div className="appLine">
             <AppImage image={props.image}/>
@@ -17,7 +15,7 @@ const OneApp = (props) => {
 
 const AppImage = (props) => {
     return (
-        <img className="appImage" src={props.image} style={{backgroundColor: "red", width: "50px", height: "50px"}}/>
+        <img className="appImage" src={props.image} style={{width: "50px", height: "50px"}}/>
     )
 }
 
