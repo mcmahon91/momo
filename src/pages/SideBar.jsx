@@ -7,6 +7,7 @@ import DrawerToggleButton from '../SideDraw/DrawerToggleButton'
 import SideDraw from '../SideDraw/SideDraw'
 import Backdrop from '../SideDraw/Backdrop'
 import Icon from '../momoicon/icon.png'
+import { Link } from "react-router-dom"
 
 class SideBar extends Component {
 
@@ -42,14 +43,14 @@ class SideBar extends Component {
                     alt={""}
                 />
                 <hr className="divider"/>
-                <a href="/"><FontAwesomeIcon className="arrow" icon={ faArrowLeft }/></a>
+                <Link to="/"><FontAwesomeIcon className="arrow" icon={ faArrowLeft }/></Link>
                 <DrawerToggleButton click={this.drawerToggleClickHandler}/>
-                <a href="/devices"><FontAwesomeIcon className="mobile" icon={ faMobileAlt }/></a>
-                <a href="/users"><FontAwesomeIcon className="user" icon={ faUserFriends }/></a>
-                <a href="/apps"><FontAwesomeIcon className="apps" icon={faAppStore} size="2x"/></a>
+                <Link to="/devices"><FontAwesomeIcon className="mobile" icon={ faMobileAlt }/></Link>
+                <Link to="/users"><FontAwesomeIcon className="user" icon={ faUserFriends }/></Link>
+                <Link to="/apps"><FontAwesomeIcon className="apps" icon={faAppStore} size="2x"/></Link>
                 <div className="bottomButtons">
-                <a href="/"><FontAwesomeIcon className="settings" icon={faCog}/></a>
-                <a href="/"><FontAwesomeIcon className="signOut" icon={faSignOutAlt}/></a>
+                <Link to="/"><FontAwesomeIcon className="settings" icon={faCog}/></Link>
+                <Link to="/"><FontAwesomeIcon className="signOut" icon={faSignOutAlt}/></Link>
                 </div>
             </div>
         {sideDrawer}

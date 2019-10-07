@@ -9,7 +9,7 @@ import OneUserTitle from '../userTitle'
 
 class UserPage extends Component {
 
-    userDatabase = firebase.initializeApp(testdatabase);
+    userDatabase = !firebase.apps.length ? firebase.initializeApp(testdatabase) : firebase.app()
     users = this.userDatabase.database().ref().child('users')
     prevUserKeyValue = this.userDatabase.database().ref().child('prevUserKey');
     state = {

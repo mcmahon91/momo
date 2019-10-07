@@ -12,7 +12,7 @@ import OneAppTitle from '../components/AppTitle'
 
 class AppsPage extends Component {
 
-    appDatabase = firebase.initializeApp(testdatabase);
+    appDatabase = !firebase.apps.length ? firebase.initializeApp(testdatabase) : firebase.app()
     apps = this.appDatabase.database().ref().child('apps')
     prevAppKeyValue = this.appDatabase.database().ref().child('prevAppKey')
     storage = firebase.storage()

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect, Link, HashRouter } from 'react-router-dom'
 // import { BrowserRouter as Link } from 'react-router-dom'
 
 //pages
@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
+      <HashRouter>
         <Switch>
           <Route exact path="/" component={MainPage}/>
           <Route exact path="/users" component={UserPage}/>
@@ -34,7 +34,7 @@ class App extends Component {
           <Route exact path="/404" component={NotFoundPage} />
           <Redirect to="/404"/>
         </Switch>
-      </Router>
+      </HashRouter>
     );
   }
 }

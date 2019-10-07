@@ -12,7 +12,7 @@ import AddDevice from '../addDevicetoggle/addDeviceToggle';
 
 class DevicePage extends Component {
 
-  app = firebase.initializeApp(testdatabase);
+  app = !firebase.apps.length ? firebase.initializeApp(testdatabase) : firebase.app()
   phonesUpdated = this.app.database().ref().child('phones')
   usersUpdated = this.app.database().ref().child('users')
   prevDeviceKeyValue = this.app.database().ref().child('prevDeviceKey')
